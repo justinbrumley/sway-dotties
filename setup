@@ -26,6 +26,11 @@ update
 # Install GNU Stow
 install stow
 
+# Install curl
+if ! command -v curl &> /dev/null; then
+  install curl
+fi
+
 # Link dotfiles
 stow vim
 stow zsh
@@ -41,7 +46,8 @@ install zsh
 chsh -s $(which zsh)
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended"
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
 
 # Install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
