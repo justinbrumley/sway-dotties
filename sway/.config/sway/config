@@ -89,8 +89,14 @@ floating_modifier $mod normal
 # Toggle float on active window
 bindsym $mod+v floating toggle
 
+# Toggle sticky on active window
+bindsym $mod+Shift+v sticky toggle
+
 # Reload the configuration file
 bindsym $mod+Shift+c reload
+
+# Lock the screen
+bindsym $mod+home exec killall -s SIGUSR1 swayidle
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -217,9 +223,16 @@ bindsym $mod+r mode "resize"
 ## Startup ##
 #############
 
+# Idle after X minutes
+# exec swayidle -w \
+#   timeout 300 'swaylock -f --image /home/justin/Pictures/lock.png' \
+#   timeout 600 'swaymsg "output * power off"' \
+#   resume 'swaymsg "output * power on"' \
+#   before-sleep 'swaylock -f --image /home/justin/Pictures/lock.png'
+
 exec waybar
 exec nm-applet
 exec insync start
-exec_always ~/bin/swayworkspace startup
+exec_always /home/justin/.local/bin/swayworkspace startup
 
 include /etc/sway/config.d/*
