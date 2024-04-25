@@ -2,16 +2,20 @@
 
 function update {
   if command -v apt &> /dev/null; then
+    echo "Running apt update..."
     sudo apt update
   elif command -v pacman &> /dev/null; then
+    echo "Running pacman update..."
     sudo pacman -Syu
   fi
 }
 
 function install {
   if command -v apt &> /dev/null; then
+    echo "Installing $1 with apt..."
     sudo apt -y install $1
   elif command -v pacman &> /dev/null; then
+    echo "Installing $1 with pacman..."
     sudo pacman --noconfirm -S $1
   fi
 }
