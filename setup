@@ -1,21 +1,17 @@
 #!/bin/bash
 
 function update {
-  if command -v apt &> /dev/null then
+  if command -v apt &> /dev/null; then
     sudo apt update
-  fi
-
-  if command -v pacman &> /dev/null then
+  elif command -v pacman &> /dev/null; then
     sudo pacman -Syu
   fi
 }
 
 function install {
-  if command -v apt &> /dev/null then
+  if command -v apt &> /dev/null; then
     sudo apt -y install $1
-  fi
-
-  if command -v pacman &> /dev/null then
+  elif command -v pacman &> /dev/null; then
     sudo pacman --noconfirm -S $1
   fi
 }
