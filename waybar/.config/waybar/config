@@ -1,0 +1,120 @@
+{
+  "layer": "top",
+    "modules-left": ["sway/workspaces"],
+    "modules-center": [],
+    "modules-right": ["custom/spotify", "custom/controller", "tray", "wireplumber", "clock"],
+
+    "custom/controller": {
+      "exec": "/home/justin/go/src/github.com/justinbrumley/waybar-controller-battery/waybar-controller-battery",
+      "format": " {}",
+      "return-type": "json"
+    },
+
+    "custom/spotify": {
+      "exec": "/usr/bin/python3 /home/justin/.config/waybar/mediaplayer.py --player spotify",
+      "format": "{}  ",
+      "return-type": "json",
+      "on-click": "playerctl play-pause",
+      "on-scroll-up": "playerctl next",
+      "on-scroll-down": "playerctl previous"
+    },
+
+    "sway/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "301 1 WEB": "",
+        "302 2 TERMINAL": "",
+        "303 3 SHELL": "",
+        "304 4 STEAM": "",
+        "305 5 MISC": "",
+
+        "501 1 SLACK": "",
+        "502 2 DISCORD": "",
+        "503 3 SPOTIFY": "",
+        "504 4 SCRATCH": "",
+        "505 5 MISC": "",
+      },
+      "persistent_workspaces": {
+        "301 1 WEB": ["DP-3"],
+        "302 2 TERMINAL": ["DP-3"],
+        "303 3 SHELL": ["DP-3"],
+        "304 4 STEAM": ["DP-3"],
+        "305 5 MISC": ["DP-3"],
+
+        "501 1 SLACK": ["HDMI-A-1"],
+        "502 2 DISCORD": ["HDMI-A-1"],
+        "503 3 SPOTIFY": ["HDMI-A-1"],
+        "504 4 SCRATCH": ["HDMI-A-1"],
+        "505 5 MISC": ["HDMI-A-1"],
+      },
+      "sort-by-number": true,
+      "on-click": "activate",
+      "all-outputs": false,
+      "active-only": true
+    },
+
+    "tray": {
+      "spacing": 10
+    },
+
+    "temperature": {
+      "format": "{icon} {temperatureF} °F",
+      "format-icons": ["", "", ""]
+    },
+
+    "wireplumber": {
+      "scroll-step": 1,
+      "format": "{icon} {volume}%",
+      "format-muted": " 0%",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "וֹ",
+        "headset": "󰋎",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [""]
+      },
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "kitty",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+    },
+
+    "pulseaudio": {
+      "scroll-step": 1,
+      "format": "{icon} {volume}%",
+      "format-bluetooth": " {volume}%",
+      "format-bluetooth-muted": " 0%",
+      "format-muted": " 0%",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "וֹ",
+        "headset": "󰋎",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [""]
+      },
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "pavucontrol",
+      "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+      "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+    },
+
+    "network": {
+      "tooltip": false,
+      "format-wifi": "  {essid}",
+      "format-ethernet": "󰈀 {ipaddr}"
+    },
+
+    "cpu": {
+      "tooltip": false,
+      "format": "󰻠 {}%"
+    },
+
+    "memory": {
+      "tooltip": false,
+      "format": "󰍛 {}%"
+    }
+}

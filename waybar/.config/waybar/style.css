@@ -1,0 +1,72 @@
+/*
+ ********************************************
+ *░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*
+ *░░█▀█░█░░░█░█░█▀▀░░░█░█░█░░░▀█▀░█▀▄░█▀█░░*
+ *░░█▀▀░█░░░█░█░▀▀█░░░█░█░█░░░░█░░█▀▄░█▀█░░*
+ *░░▀░░░▀▀▀░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░░▀░░▀░▀░▀░▀░░*
+ *░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*
+ ********************************************
+ */
+
+* {
+	border: none;
+	border-radius: 0;
+	font-family: Fira Code;
+	font-size: 16px;
+}
+
+/* Background Color */
+/* #30383b */
+
+/* Text Color */
+/* #777a7c */
+
+window#waybar {
+  color: #fff;
+	background: #0f1613;
+  opacity: 0.9;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+  transition: none;
+  color: #fff;
+  background: #0f1613;
+}
+
+#workspaces button {
+  color: #fff;
+  opacity: .5;
+}
+
+#workspaces button:hover {
+  opacity: 1;
+}
+
+#workspaces button.focused {
+  opacity: 1;
+}
+
+#workspaces button.urgent {
+  color: #eb4d4b;
+  opacity: 1;
+}
+
+#workspaces,
+#window,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-spotify,
+#custom-controller,
+#tray,
+#temperature,
+#cpu,
+#memory,
+#clock {
+  /* Global Styles */
+  margin-right: 16px;
+}
