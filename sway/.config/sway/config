@@ -30,9 +30,12 @@ set $browser firefox
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 
+for_window [class="feh"] floating enable
+
+for_window [window_role="dialog"] floating enable
+
 # Pretty sure it just remembers the size automatically, but leaving here to tweak later:
-for_window [app_id="yubi"] resize 450px 320px 
-for_window [app_id="yubi"] floating enable
+for_window [app_id="yubi"] floating enable, resize set 450px 320px
 
 # Chiaki fullscreen streaming
 for_window [title="Chiaki | Stream"] fullscreen enable
@@ -50,13 +53,13 @@ default_border none
 output HDMI-A-1 {
   resolution 1920x1080
   position 0,0
-  bg /home/justin/Pictures/wallpapers/ff16.jpeg fill
+  bg /home/justin/Pictures/nordic-wallpapers/ign_leafHelmet.png fill
 }
 
 output DP-3 {
   resolution 1920x1080
   position 1920,100
-  bg /home/justin/Pictures/wallpapers/ff16.jpeg fill
+  bg /home/justin/Pictures/nordic-wallpapers/ign_leafHelmet.png fill
 }
 
 ############
@@ -234,5 +237,8 @@ exec waybar
 exec nm-applet
 exec insync start
 exec_always /home/justin/.local/bin/swayworkspace startup
+
+# Clipboard manager
+exec wl-paste -t text --watch clipman store --no-persist
 
 include /etc/sway/config.d/*
