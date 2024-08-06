@@ -6,24 +6,36 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call plug#begin()
 
-Plug 'airblade/vim-gitgutter'
+" Styling Stuff
 Plug 'ap/vim-css-color'
 Plug 'felixhummel/setcolors.vim'
-Plug 'fatih/vim-go'
-Plug 'flazz/vim-colorschemes'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-syntastic/syntastic'
+Plug 'flazz/vim-colorschemes'
+
+" Coding Stuff
+Plug 'airblade/vim-gitgutter' " Show changed lines in gutter
+Plug 'jiangmiao/auto-pairs'   " Auto insert closing brackets/braces/etc.
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'       " Fuzzy File Finder (ctrl-p)
+Plug 'mileszs/ack.vim'        " Search
+Plug 'tpope/vim-unimpaired'   " Navigation between buffers
+Plug 'dense-analysis/ale'     " Async linting
+
+" Syntax Stuff
+Plug 'fatih/vim-go'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'posva/vim-vue'
 Plug 'rust-lang/rust.vim'
 Plug 'mustache/vim-mustache-handlebars'
+
+" Ctrl-P
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+
+" Writing Stuff
+Plug 'folke/zen-mode.nvim'
 
 call plug#end()
 
@@ -45,6 +57,13 @@ else
   endif
 endif
 
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'markdown': ['write-good']
+\}
+
 " Open Quickfix
 nnoremap <C-c> :copen<CR>
 
@@ -57,9 +76,8 @@ cnoreabbrev aG Ack!
 cnoreabbrev Ag Ack!
 cnoreabbrev AG Ack!
 
-" Map CTRL-P To FZF
-nnoremap <C-p> :Files<CR>
-let $FZF_DEFAULT_COMMAND = 'rg --hidden --files'
+" Map CTRL-P To Telescope
+nnoremap <C-p> :Telescope find_files<CR>
 
 " New splits go right
 set splitright
@@ -110,19 +128,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Hybrid line numbers
 set number relativenumber
 set nu rnu
-
-" Syntastic config for linting
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { "mode": "active" }
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_typescript_checkers = ['eslint']
 
 " Rust
 let g:rustfmt_autosave = 1
