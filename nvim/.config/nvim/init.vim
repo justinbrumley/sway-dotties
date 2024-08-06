@@ -64,6 +64,8 @@ let g:ale_fixers = {
 \   'markdown': ['write-good']
 \}
 
+let g:ale_set_signs = 0
+
 " Open Quickfix
 nnoremap <C-c> :copen<CR>
 
