@@ -1,6 +1,9 @@
 return {
   'nvim-lualine/lualine.nvim',
   opts = {
+    options = {
+      theme = 'gruvbox_dark',
+    },
     tabline = {
       lualine_a = {'buffers'},
       lualine_b = {},

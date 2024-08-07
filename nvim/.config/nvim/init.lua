@@ -1,4 +1,5 @@
 require("config.lazy")
+require('leap').create_default_mappings()
 
 -- Some general setup
 vim.opt.filetype = 'off'
