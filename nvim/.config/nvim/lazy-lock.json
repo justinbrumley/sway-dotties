@@ -4,6 +4,7 @@
   "auto-pairs": { "branch": "master", "commit": "39f06b873a8449af8ff6a3eee716d3da14d63a76" },
   "fzf": { "branch": "master", "commit": "c423c496a15b96cfc3c3fbd09135bcdc0c8e6b6e" },
   "fzf.vim": { "branch": "master", "commit": "6f28c8c7bb551161a0315a76488522204f39c1f4" },
+  "gruvbox.nvim": { "branch": "main", "commit": "7a1b23e4edf73a39642e77508ee6b9cbb8c60f9e" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "leap.nvim": { "branch": "main", "commit": "c6bfb191f1161fbabace1f36f578a20ac6c7642c" },
   "lualine.nvim": { "branch": "master", "commit": "544dd1583f9bb27b393f598475c89809c4d5e86b" },

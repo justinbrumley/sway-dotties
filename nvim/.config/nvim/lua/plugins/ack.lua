@@ -1,3 +1,0 @@
-return {
-  'mileszs/ack.vim',
-}

@@ -23,19 +23,18 @@ vim.g.ale_fixers = {
 }
 
 vim.g.ale_set_signs = 0
+vim.g.ale_fix_on_save = 1
+vim.g.ale_set_loclist = 0
+vim.g.ale_set_quickfix = 1
+-- vim.g.ale_open_list = 1 -- Auto-open quickfix list
 
--- Setup ack to use rg (ripgrep) for searching
-vim.g.ackprg = 'rg --color=never --no-heading --with-filename --line-number --column'
-vim.g.ack_autoclose = 1
-
--- Ack aliases
-vim.cmd('cnoreabbrev ag Ack!')
-vim.cmd('cnoreabbrev aG Ack!')
-vim.cmd('cnoreabbrev Ag Ack!')
-vim.cmd('cnoreabbrev AG Ack!')
+-- Remap <leader> key to comma
+vim.keymap.set("", ",", "<Nop>")
+vim.g.mapleader = ","
 
 -- Open Quickfix
-vim.cmd('nnoremap <C-c> :copen<CR>')
+vim.keymap.set("n", "<leader>c", ":copen<CR>")
+vim.keymap.set("n", "<leader>c", ":ALEPopulateQuickfix<CR>:copen<CR>")
 
 -- New splits go right
 vim.opt.splitright = true
@@ -55,9 +54,10 @@ vim.opt.lcs = 'trail:·,tab:»·'
 vim.opt.wildignore = vim.opt.wildignore + '*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/node_modules/*,*/public/js/_*'
 
 -- Theming
-vim.cmd('colorscheme tender')
-vim.cmd('syntax enable')
 vim.opt.termguicolors = true
+vim.o.background = 'dark'
+vim.cmd([[colorscheme gruvbox]])
+vim.cmd('syntax enable')
 
 -- Fuzzy File Search
 vim.opt.rtp = vim.opt.rtp + '~/.fzf'
@@ -73,8 +73,13 @@ vim.opt.rnu = true;
 -- Rust
 vim.g.rustfmt_autosave = 1
 
--- Map CTRL-P To Telescope
+-- Map CTRL-P To Telescope::find_files
 vim.cmd('nnoremap <C-p> :Telescope find_files<CR>')
+vim.keymap.set("n", "<leader>p", ":Telescope find_files<CR>")
+
+-- Map CTRL-F to Telescope::live_grep
+vim.cmd('nnoremap <C-f> :Telescope live_grep<CR>')
+vim.keymap.set("n", "<leader>f", ":Telescope live_grep<CR>")
 
 -- Transparent Background
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
