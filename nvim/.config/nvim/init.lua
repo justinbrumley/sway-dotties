@@ -1,3 +1,8 @@
+-- Remap <leader> key to comma
+vim.keymap.set("", ",", "<Nop>")
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+
 require("config.lazy")
 require('leap').create_default_mappings()
 
@@ -28,13 +33,9 @@ vim.g.ale_set_loclist = 0
 vim.g.ale_set_quickfix = 1
 -- vim.g.ale_open_list = 1 -- Auto-open quickfix list
 
--- Remap <leader> key to comma
-vim.keymap.set("", ",", "<Nop>")
-vim.g.mapleader = ","
-
--- Open Quickfix
-vim.keymap.set("n", "<leader>c", ":copen<CR>")
-vim.keymap.set("n", "<leader>c", ":ALEPopulateQuickfix<CR>:copen<CR>")
+-- "Save" and "Save and Quit"
+vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<leader>q", ":wq<CR>")
 
 -- New splits go right
 vim.opt.splitright = true
