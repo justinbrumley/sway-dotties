@@ -10,35 +10,53 @@
 
 * {
 	border: none;
-	border-radius: 0;
 	font-family: Fira Code;
 	font-size: 16px;
 }
 
-/* Background Color */
-/* #30383b */
-
-/* Text Color */
-/* #777a7c */
-
 window#waybar {
-  color: #fff;
-	background: #0f1613;
-  opacity: 0.9;
-}
+  /* Dark Theme */
+  /* color: #8d8082; */
+  /* background: rgba(17, 22, 30, 0.65); */
 
-window#waybar.hidden {
-	opacity: 0.2;
+  /* Light Theme */
+  color: #26141a;
+  background: transparent;
 }
 
 #window {
+  /* Dark Theme */
+  /* color: #8d8082; */
+
+  /* Light Theme */
+  color: #26141a;
+
+  /* General */
   transition: none;
-  color: #fff;
-  background: #0f1613;
+}
+
+#workspaces, #clock, #custom-player, #custom-controller, #tray, #wireplumber {
+  /* Dark Theme */
+  /* background: rgba(17, 22, 30, 0.65); */
+  /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.65); */
+
+  /* Light Theme */
+  background: #eccab0;
+  border: 2px solid #e1a991;
+
+  /* General */
+  padding: 0 8px;
+  border-radius: 8px;
 }
 
 #workspaces button {
-  color: #fff;
+  /* Dark Theme */
+  /* color: #8d8082; */
+
+  /* Light Theme */
+  color: #26141a;
+
+  /* General */
   opacity: .5;
 }
 
@@ -55,7 +73,6 @@ window#waybar.hidden {
   opacity: 1;
 }
 
-#workspaces,
 #window,
 #network,
 #pulseaudio,
@@ -65,8 +82,6 @@ window#waybar.hidden {
 #tray,
 #temperature,
 #cpu,
-#memory,
-#clock {
-  /* Global Styles */
-  margin-right: 16px;
+#memory {
+  margin-right: 8px;
 }

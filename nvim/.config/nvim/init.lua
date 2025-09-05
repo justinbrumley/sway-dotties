@@ -24,7 +24,6 @@ end
 vim.g.ale_fixers = {
    ['*'] = {'remove_trailing_lines', 'trim_whitespace'},
    javascript = {'eslint'},
-   markdown = {'write-good'},
 }
 
 vim.g.ale_set_signs = 0
@@ -34,8 +33,15 @@ vim.g.ale_set_quickfix = 1
 -- vim.g.ale_open_list = 1 -- Auto-open quickfix list
 
 -- "Save" and "Save and Quit"
-vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<leader>q", ":wq<CR>")
+vim.keymap.set("n", "<leader>ww", ":w<CR>")
+vim.keymap.set("n", "<leader>wq", ":wq<CR>")
+vim.keymap.set("n", "<leader>wa", ":wa<CR>")
+
+-- Close all buffers and exit nvim
+vim.keymap.set("n", "<leader>qq", ":qa<CR>")
+
+-- Toggle Zen Mode
+vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")
 
 -- New splits go right
 vim.opt.splitright = true
@@ -44,6 +50,10 @@ vim.opt.splitright = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+vim.opt.scl = 'no'
+
+vim.cmd('set statusline+=%F')
 
 -- Keep buffers open in background
 vim.opt.hidden = true
@@ -84,3 +94,11 @@ vim.keymap.set("n", "<leader>f", ":Telescope live_grep<CR>")
 
 -- Transparent Background
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+
+-- Keybind for opening neo-tree
+vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal toggle<CR>")
+-- vim.keymap.set("n", "<leader>b", ":Neotree buffers reveal toggle right<CR>")
+vim.keymap.set("n", "<leader>bd", ":bd<CR>")
+
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3

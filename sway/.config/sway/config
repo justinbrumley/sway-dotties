@@ -14,11 +14,6 @@ set $right l
 # Default terminal.
 set $term /usr/bin/kitty
 
-# Application launcher.
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu wofi --show drun | xargs swaymsg exec --
-
 # Default browser.
 set $browser firefox
 
@@ -30,12 +25,24 @@ set $browser firefox
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 
+for_window [instance="proxy.iinact.com__overlay_mopimopi"] floating enable
+for_window [instance="proxy.iinact.com__overlay_mopimopi"] opacity 0.9
+for_window [instance="proxy.iinact.com__overlay_mopimopi"] resize set 550px 350px
+for_window [instance="proxy.iinact.com__overlay_mopimopi"] layer top
+
+for_window [app_id="thunar"] floating enable
+for_window [title="Open Files"] floating enable
+for_window [class="modmanager.exe"] floating enable
+for_window [class="zoom"] floating enable
+
 for_window [class="feh"] floating enable
 
 for_window [window_role="dialog"] floating enable
 
 # Pretty sure it just remembers the size automatically, but leaving here to tweak later:
-for_window [app_id="yubi"] floating enable, resize set 450px 320px
+for_window [app_id="yubi"] floating enable, resize set 450px 340px
+
+# for_window [title="Friends List"] resize set 300px
 
 # Chiaki fullscreen streaming
 for_window [title="Chiaki | Stream"] fullscreen enable
@@ -43,23 +50,39 @@ for_window [title="Chiaki | Stream"] fullscreen enable
 # Remove title bar
 default_border none
 
-# Add gaps around windows
-# gaps inner 8px
+# Default gaps
+gaps inner 8
+
+# SwayFX styling
+corner_radius 8
+blur enable
+blur_passes 1
+shadows enable
+
+layer_effects "waybar" {
+  shadows disable;
+  blur enable;
+  blur_passes 1;
+  blur_xray enable;
+  blur_ignore_transparent enable;
+  corner_radius 8;
+}
 
 #############
 ## Outputs ##
 #############
 
+output DP-3 {
+  resolution 1920x1080@160Hz
+  position 1920,150
+  adaptive_sync on
+  bg /home/justin/Pictures/wallpapers/crew.jpg fill
+}
+
 output HDMI-A-1 {
   resolution 1920x1080
   position 0,0
-  bg /home/justin/Pictures/nordic-wallpapers/ign_leafHelmet.png fill
-}
-
-output DP-3 {
-  resolution 1920x1080
-  position 1920,100
-  bg /home/justin/Pictures/nordic-wallpapers/ign_leafHelmet.png fill
+  bg /home/justin/Pictures/wallpapers/crew.jpg fill
 }
 
 ############
@@ -73,10 +96,17 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # Start your launcher
+set $menu wofi --show drun | xargs swaymsg exec --
 bindsym $mod+space exec $menu
 
 # Start Browser
 bindsym $mod+b exec $browser
+
+# Start Qobuz
+bindsym $mod+m exec dex /usr/share/applications/qobuz.desktop
+
+# Toggle Gaps
+bindsym $mod+g gaps inner current toggle 10px
 
 # Screenshot
 bindsym $mod+Shift+p exec GRIM_DEFAULT_DIR=~/Pictures/screenshots grim -g "$(slurp)"
@@ -162,6 +192,9 @@ bindsym $mod+Shift+w exec swayworkspace move previous
 ## Layout ##
 ############
 
+# Toggle Waybar
+bindsym $mod+Semicolon exec togglewaybar
+
 # Switch the current container between different layout styles
 # bindsym $mod+v split
 # bindsym $mod+s layout stacking
@@ -225,13 +258,6 @@ bindsym $mod+r mode "resize"
 #############
 ## Startup ##
 #############
-
-# Idle after X minutes
-# exec swayidle -w \
-#   timeout 300 'swaylock -f --image /home/justin/Pictures/lock.png' \
-#   timeout 600 'swaymsg "output * power off"' \
-#   resume 'swaymsg "output * power on"' \
-#   before-sleep 'swaylock -f --image /home/justin/Pictures/lock.png'
 
 exec waybar
 exec nm-applet
